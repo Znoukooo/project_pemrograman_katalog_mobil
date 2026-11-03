@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW & Mercedes-Benz | Luxury Car Showroom Indonesia</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            dark: '#0b0f19',
+                            card: '#131c2e',
+                            border: '#1e293b',
+                            accent: '#3b82f6',
+                            gold: '#d4af37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        .glass-nav { background: rgba(11, 15, 25, 0.88); backdrop-filter: blur(12px); }
+        .hero-bg {
+            background: linear-gradient(rgba(11, 15, 25, 0.7), rgba(11, 15, 25, 0.95)), url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .car-card-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-32 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-6 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3 border border-emerald-400">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <span id="toast-message" class="font-medium text-sm">Berhasil!</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-slate-800 flex items-center justify-center border border-slate-700 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-car-side text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-white via-slate-200 to-blue-400 bg-clip-text text-transparent">LUXURY GARAGE</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-slate-400">BMW & Mercedes-Benz Showroom</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                <a href="#home" class="hover:text-blue-400 transition">Beranda</a>
+                <a href="#catalog" class="hover:text-blue-400 transition">Koleksi Mobil</a>
+                <a href="#simulator" class="hover:text-blue-400 transition">Simulasi Kredit</a>
+                <a href="#compare" class="hover:text-blue-400 transition">Bandingkan</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Test Drive & Kontak</a>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl font-medium text-sm shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-calendar-days mr-2"></i> Book Test Drive
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-slate-800 px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Beranda</a>
+            <a href="#catalog" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Koleksi Mobil</a>
+            <a href="#simulator" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Simulasi Kredit</a>
+            <a href="#compare" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Bandingkan</a>
+            <a href="#contact" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Test Drive & Kontak</a>
+            <div class="pt-2">
+                <a href="#contact" class="w-full text-center block bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl font-medium text-sm shadow-lg">
+                    Book Test Drive
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen hero-bg flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-transparent to-black/40"></div>
+        <div class="relative max-w-5xl mx-auto text-center z-10 space-y-8 py-20">
+            <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-slate-700/80 px-4 py-2 rounded-full text-xs tracking-wider uppercase text-blue-400 font-semibold backdrop-blur-md">
+                <i class="fa-solid fa-crown text-amber-400"></i>
+                <span>Authorized Luxury Showroom Indonesia</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                Rasakan Kemewahan & <br>
+                <span class="bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">Performa Tanpa Kompromi</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg font-light leading-relaxed">
+                Temukan lini eksklusif mobil impian dari BMW Series dan Mercedes-Benz Collection. Desain ikonik, teknologi mutakhir, dan kenyamanan kelas dunia menanti Anda.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#catalog" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl shadow-xl shadow-blue-600/30 transition duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-3">
+                    <span>Jelajahi Katalog</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#simulator" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-8 py-4 rounded-xl backdrop-blur-md transition duration-300 flex items-center justify-center space-x-3">
+                    <i class="fa-solid fa-calculator text-blue-400"></i>
+                    <span>Simulasi Kredit</span>
+                </a>
+            </div>
+
+            <!-- Quick stats bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-slate-800/80 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <p class="text-2xl sm:text-3xl font-bold text-white">12+</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Model Unggulan</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-400">100%</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Garansi Resmi ATPM</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl sm:text-3xl font-bold text-white">24/7</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">VIP Concierge Service</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-2xl sm:text-3xl font-bold text-amber-400">5.0</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Rating Kepuasan Klien</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Catalog Showcase Section -->
+    <section id="catalog" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400">Koleksi Eksklusif</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Pilih Merek & Seri Kendaraan Impian Anda</p>
+            <p class="text-slate-400 text-sm sm:text-base">Eksplorasi jajaran mahakarya teknik Jerman dari BMW dan Mercedes-Benz.</p>
+
+            <!-- Interactive Brand Filter Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-6">
+                <button onclick="filterCars('all')" id="btn-all" class="filter-btn px-6 py-2.5 rounded-xl font-medium text-sm transition bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+                    Semua Model
+                </button>
+                <button onclick="filterCars('bmw')" id="btn-bmw" class="filter-btn px-6 py-2.5 rounded-xl font-medium text-sm transition bg-slate-800 text-slate-300 hover:bg-slate-700">
+                    <i class="fa-solid fa-circle-nodes mr-1.5 text-blue-400"></i> BMW Series
+                </button>
+                <button onclick="filterCars('mercedes')" id="btn-mercedes" class="filter-btn px-6 py-2.5 rounded-xl font-medium text-sm transition bg-slate-800 text-slate-300 hover:bg-slate-700">
+                    <i class="fa-solid fa-star mr-1.5 text-amber-400"></i> Mercedes-Benz
+                </button>
+            </div>
+        </div>
+
+        <!-- Car Grid Container -->
+        <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Populated dynamically via JS -->
+        </div>
+    </section>
+
+    <!-- Credit Simulation Section -->
+    <section id="simulator" class="py-20 bg-[#070a12] border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400">Simulasi Pembiayaan</h2>
+                <h3 class="text-3xl font-extrabold">Hitung Angsuran Kredit Kendaraan</h3>
+                <p class="text-slate-400 text-sm">Sesuaikan uang muka (DP) dan jangka waktu cicilan sesuai dengan preferensi finansial Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Calculator Form -->
+                <div class="lg:col-span-2 bg-[#131c2e] p-8 rounded-3xl border border-slate-800 shadow-xl space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-2">Pilih Model Mobil</label>
+                            <select id="sim-car" onchange="calculateCredit()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 font-medium">
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-2">Jangka Waktu (Tenor)</label>
+                            <select id="sim-tenor" onchange="calculateCredit()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 font-medium">
+                                <option value="12">1 Tahun (12 Bulan)</option>
+                                <option value="24">2 Tahun (24 Bulan)</option>
+                                <option value="36" selected>3 Tahun (36 Bulan)</option>
+                                <option value="48">4 Tahun (48 Bulan)</option>
+                                <option value="60">5 Tahun (60 Bulan)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs uppercase tracking-wider font-semibold text-slate-400">Uang Muka (DP %)</label>
+                            <span id="dp-label" class="text-sm font-bold text-blue-400">30%</span>
+                        </div>
+                        <input type="range" id="sim-dp" min="20" max="60" step="5" value="30" oninput="calculateCredit()" class="w-full accent-blue-600 bg-slate-900 h-2 rounded-lg cursor-pointer">
+                        <div class="flex justify-between text-[11px] text-slate-500 mt-1">
+                            <span>20% (Minimum)</span>
+                            <span>60%</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase">Harga OTR Mobil</span>
+                            <p id="sim-price-display" class="text-lg font-bold text-white">Rp 0,-</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-slate-400 uppercase">Estimasi DP Awal</span>
+                            <p id="sim-dp-display" class="text-lg font-bold text-amber-400">Rp 0,-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Result Card -->
+                <div class="bg-gradient-to-br from-blue-950/60 to-[#131c2e] p-8 rounded-3xl border border-blue-900/50 shadow-2xl flex flex-col justify-between text-center space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-900/40 px-3 py-1 rounded-full border border-blue-700/50">Hasil Kalkulasi</span>
+                        <h4 class="text-lg font-semibold text-white mt-4">Estimasi Cicilan per Bulan</h4>
+                        <div class="my-4">
+                            <span id="sim-monthly-installment" class="text-3xl sm:text-4xl font-extrabold text-amber-400 tracking-tight">Rp 0,-</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            *Sudah termasuk asuransi komprehensif kendaraan selama masa tenor dan biaya administrasi leasing rekanan utama.
+                        </p>
+                    </div>
+
+                    <button onclick="bookFromSimulator()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition">
+                        Ajukan Pembiayaan Ini
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="compare" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400">Analisis Perbandingan</h2>
+            <h3 class="text-3xl font-extrabold">Bandingkan Model Favorit</h3>
+            <p class="text-slate-400 text-sm">Pilih dua mobil di bawah ini untuk membandingkan spesifikasi performa secara instan.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
+            <!-- Selector 1 -->
+            <div class="bg-[#131c2e] p-5 rounded-2xl border border-slate-800">
+                <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-2">Pilih Kendaraan Pertama</label>
+                <select id="compare-1" onchange="updateComparison()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 font-medium">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+            <!-- Selector 2 -->
+            <div class="bg-[#131c2e] p-5 rounded-2xl border border-slate-800">
+                <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-2">Pilih Kendaraan Kedua</label>
+                <select id="compare-2" onchange="updateComparison()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 font-medium">
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Comparison Table Result -->
+        <div class="max-w-4xl mx-auto bg-[#131c2e] rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="grid grid-cols-3 bg-slate-900/80 p-4 border-b border-slate-800 font-semibold text-center text-sm">
+                <div class="text-left text-slate-400">Spesifikasi</div>
+                <div id="comp-name-1" class="text-blue-400">Model 1</div>
+                <div id="comp-name-2" class="text-amber-400">Model 2</div>
+            </div>
+            <div class="divide-y divide-slate-800/60 text-sm" id="comp-body">
+                <!-- Comparison rows populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive Booking & Contact Section -->
+    <section id="contact" class="py-20 bg-[#070a12] border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Info text -->
+                <div class="space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-950/60 px-3 py-1.5 rounded-lg border border-blue-900/50">VIP Service</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Jadwalkan Test Drive Eksklusif Anda Hari Ini</h2>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                        Nikmati pengalaman berkendara langsung dengan mobil pilihan Anda didampingi oleh Product Expert kami. Kami juga melayani kunjungan showroom privat atau konsultasi pembiayaan khusus.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Showroom Utama</h4>
+                                <p class="text-xs text-slate-400">Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">VIP Concierge Hotline</h4>
+                                <p class="text-xs text-slate-400">+62 21 555-LUXE (5893)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Email Konsultasi</h4>
+                                <p class="text-xs text-slate-400">concierge@luxurygarage.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="bg-[#131c2e] p-8 rounded-3xl border border-slate-800 shadow-2xl">
+                    <h3 class="text-xl font-bold mb-6 flex items-center space-x-2">
+                        <i class="fa-solid fa-car text-blue-400 mr-2"></i> Form Permintaan Test Drive
+                    </h3>
+                    <form id="testdrive-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Nama Lengkap</label>
+                            <input type="text" id="cust-name" required placeholder="cth. Alexander Wijaya" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Nomor WhatsApp</label>
+                                <input type="tel" id="cust-phone" required placeholder="cth. 08123456789" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Pilih Model Mobil</label>
+                                <select id="cust-car" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
+                                    <!-- Populated via JS -->
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Tanggal Rencana Test Drive</label>
+                            <input type="date" id="cust-date" required class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Catatan Tambahan (Opsional)</label>
+                            <textarea id="cust-notes" rows="3" placeholder="cth. Ingin test drive di area rumah atau showroom utama..." class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition duration-300">
+                            Kirim Permintaan Test Drive
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Detail / Quick View Modal -->
+    <div id="car-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-content" class="bg-[#131c2e] border border-slate-700 w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+            <div class="relative h-64 sm:h-80">
+                <img id="modal-img" src="" alt="Car Image" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#131c2e] via-transparent to-black/40"></div>
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-slate-900/80 text-white w-10 h-10 rounded-full flex items-center justify-center border border-slate-700 hover:bg-slate-800 transition" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="absolute bottom-4 left-6">
+                    <span id="modal-brand" class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-600 text-white">Brand</span>
+                    <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Car Name</h3>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider block">Harga Mulai Dari (OTR)</span>
+                        <span id="modal-price" class="text-2xl font-bold text-amber-400">Rp 0,-</span>
+                    </div>
+                    <button onclick="bookCarFromModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition">
+                        <i class="fa-solid fa-calendar-check mr-2"></i> Jadwalkan Test Drive Model Ini
+                    </button>
+                </div>
+
+                <!-- Specs Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                        <i class="fa-solid fa-gauge-high text-blue-400 text-lg mb-1"></i>
+                        <span class="block text-xs text-slate-400 uppercase">Tenaga</span>
+                        <span id="modal-hp" class="text-sm font-bold text-white">0 HP</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                        <i class="fa-solid fa-bolt text-amber-400 text-lg mb-1"></i>
+                        <span class="block text-xs text-slate-400 uppercase">0-100 km/h</span>
+                        <span id="modal-accel" class="text-sm font-bold text-white">0 dtk</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                        <i class="fa-solid fa-gears text-blue-400 text-lg mb-1"></i>
+                        <span class="block text-xs text-slate-400 uppercase">Mesin</span>
+                        <span id="modal-engine" class="text-sm font-bold text-white">-</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 text-center">
+                        <i class="fa-solid fa-car-side text-amber-400 text-lg mb-1"></i>
+                        <span class="block text-xs text-slate-400 uppercase">Kategori</span>
+                        <span id="modal-category" class="text-sm font-bold text-white">-</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Keunggulan Utama</h4>
+                    <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed">
+                        Deskripsi lengkap kendaraan...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#070a12] border-t border-slate-800/80 py-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-wider">LUXURY GARAGE</span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Showroom mobil mewah resmi terpercaya di Indonesia yang menghadirkan lini premium BMW dan Mercedes-Benz berkualitas tinggi.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-xs uppercase tracking-wider">BMW Series</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#catalog" class="hover:text-white transition">BMW 3 Series</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">BMW 5 Series</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">BMW 7 Series</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">BMW X3 & X5</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">BMW M4 Competition</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-xs uppercase tracking-wider">Mercedes-Benz</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#catalog" class="hover:text-white transition">C-Class Sedan</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">E-Class Executive</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">S-Class Flagship</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">GLC & GLE SUV</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">Mercedes-AMG GT</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-xs uppercase tracking-wider">Jam Operasional</h4>
+                <p class="text-xs text-slate-400 mb-2">Senin - Jumat: 09:00 - 19:00 WIB</p>
+                <p class="text-xs text-slate-400 mb-4">Sabtu - Minggu: 10:00 - 17:00 WIB</p>
+                <div class="flex space-x-3 text-slate-300">
+                    <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
+            &copy; 2026 Luxury Garage Indonesia. All rights reserved. Authorized BMW & Mercedes-Benz Showcase Partner.
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Car Dataset (BMW & Mercedes-Benz with robust Unsplash fallback imagery)
+        const carsData = [
+            {
+                id: "bmw-3",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW 330i M Sport",
+                category: "Sedan / Sport",
+                price: 1085000000,
+                priceFormatted: "Rp 1,085 Miliar",
+                hp: "258 HP",
+                accel: "5.8 dtk",
+                engine: "2.0L TwinPower Turbo",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
+                desc: "Sedan sport legendaris dengan handling presisi tinggi, paket eksterior M Sport aerodinamis, dan kabin digital berteknologi BMW Curved Display."
+            },
+            {
+                id: "bmw-5",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW 520i M Sport",
+                category: "Executive Sedan",
+                price: 1250000000,
+                priceFormatted: "Rp 1,250 Miliar",
+                hp: "184 HP",
+                accel: "7.9 dtk",
+                engine: "2.0L Turbo Mild-Hybrid",
+                image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
+                desc: "Kombinasi sempurna antara kenyamanan eksekutif kelas atas dan efisiensi berkendara modern dengan sistem mild-hybrid pintar."
+            },
+            {
+                id: "bmw-7",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW 740li Executive",
+                category: "Flagship Luxury",
+                price: 2450000000,
+                priceFormatted: "Rp 2,450 Miliar",
+                hp: "381 HP",
+                accel: "5.4 dtk",
+                engine: "3.0L Inline-6 Turbo",
+                image: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=800&q=80",
+                desc: "Puncak kemewahan sedan flagship BMW, dilengkapi teater layar belakang 31-inch BMW Theatre Screen dan interior Lounge Seat tak tertandingi."
+            },
+            {
+                id: "bmw-x3",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW X3 sDrive20i",
+                category: "Luxury SAV",
+                price: 1120000000,
+                priceFormatted: "Rp 1,120 Miliar",
+                hp: "184 HP",
+                accel: "8.2 dtk",
+                engine: "2.0L BMW TwinPower Turbo",
+                image: "https://images.unsplash.com/photo-1541348263662-e0626628d00f?auto=format&fit=crop&w=800&q=80",
+                desc: "Sport Activity Vehicle tangguh untuk petualangan harian maupun jarak jauh dengan kenyamanan suspensi adaptif."
+            },
+            {
+                id: "bmw-x5",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW X5 xDrive40i",
+                category: "Premium SAV",
+                price: 1780000000,
+                priceFormatted: "Rp 1,780 Miliar",
+                hp: "340 HP",
+                accel: "5.5 dtk",
+                engine: "3.0L 6-Cylinder Turbo",
+                image: "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=800&q=80",
+                desc: "SUV premium berukuran mid-size dengan kapasitas 7 penumpang, panoramic glass roof Sky Lounge, dan traksi xDrive cerdas."
+            },
+            {
+                id: "bmw-m4",
+                brand: "bmw",
+                brandName: "BMW",
+                name: "BMW M4 Competition",
+                category: "High-Performance",
+                price: 2850000000,
+                priceFormatted: "Rp 2,850 Miliar",
+                hp: "510 HP",
+                accel: "3.9 dtk",
+                engine: "3.0L M TwinPower Turbo S58",
+                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
+                desc: "Mobil sport coupe bertenaga buas dengan DNA balap sejati, velg forged M, dan sistem pengereman performa tinggi."
+            },
+            {
+                id: "merc-c",
+                brand: "mercedes",
+                brandName: "Mercedes-Benz",
+                name: "Mercedes-Benz C 200 Avantgarde",
+                category: "Luxury Sedan",
+                price: 1025000000,
+                priceFormatted: "Rp 1,025 Miliar",
+                hp: "204 HP",
+                accel: "7.3 dtk",
+                engine: "1.5L Turbo + EQ Boost",
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80",
+                desc: "Baby S-Class dengan desain elegan, interior berlayar sentuh vertikal MBUX mutakhir, dan kenyamanan pengendaraan khas Mercedes."
+            },
+            {
+                id: "merc-e",
+                brand: "mercedes",
+                brandName: "Mercedes-Benz",
+                name: "Mercedes-Benz E 300 AMG Line",
+                category: "Executive Sedan",
+                price: 1420000000,
+                priceFormatted: "Rp 1,420 Miliar",
+                hp: "258 HP",
+                accel: "6.2 dtk",
+                engine: "2.0L 4-Cylinder Turbo",
+                image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
+                desc: "Standar emas sedan eksekutif dunia dengan pencahayaan ambient 64 warna, jok kulit nappa mewah, dan fitur keselamatan PRE-SAFE."
+            },
+            {
+                id: "merc-s",
+                brand: "mercedes",
+                brandName: "Mercedes-Benz",
+                name: "Mercedes-Benz S 450 4MATIC",
+                category: "Flagship Luxury",
+                price: 2980000000,
+                priceFormatted: "Rp 2,980 Miliar",
+                hp: "367 HP",
+                accel: "5.1 dtk",
+                engine: "3.0L Inline-6 + EQ Boost",
+                image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80",
+                desc: "Simbol status tertinggi di dunia otomotif dengan suspensi udara AIRMATIC, Burmester 4D surround sound, dan kursi pijat executive."
+            },
+            {
+                id: "merc-glc",
+                brand: "mercedes",
+                brandName: "Mercedes-Benz",
+                name: "Mercedes-Benz GLC 300 AMG Line",
+                category: "Luxury SUV",
+                price: 1210000000,
+                priceFormatted: "Rp 1,210 Miliar",
+                hp: "258 HP",
+                accel: "6.2 dtk",
+                engine: "2.0L Turbo 4MATIC",
+                image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80",
+                desc: "SUV mewah terlaris dengan kabin lapang, fungsi off-road screen, dan tampilan sporty garis desain AMG."
+            },
+            {
+                id: "merc-gle",
+                brand: "mercedes",
+                brandName: "Mercedes-Benz",
+                name: "Mercedes-Benz GLE 450 AMG Line",
+                category: "Premium SUV",
+                price: 1890000000,
+                priceFormatted: "Rp 1,890 Miliar",
+                hp: "367 HP",
+                accel: "5.7 dtk",
+                engine: "3.0L Inline-6 Turbo",
+                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
+                desc: "SUV premium bertenaga dengan 3 baris kursi fleksibel, E-ACTIVE BODY CONTROL, dan kemewahan interior tanpa tanding."
+            },
+            {
+                id: "merc-amg",
+                brand: "mercedes",
+                brandName: "Mercedes-AMG",
+                name: "Mercedes-AMG GT 4-Door Coupe",
+                category: "High-Performance",
+                price: 3650000000,
+                priceFormatted: "Rp 3,650 Miliar",
+                hp: "435 HP",
+                accel: "4.5 dtk",
+                engine: "3.0L AMG Turbo + Electric",
+                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
+                desc: "Coupe 4 pintu buatan Affalterbach yang memadukan kepraktisan harian dengan performa supercar di lintasan balap."
+            }
+        ];
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Render Car Grid
+        function renderCatalog(filter = 'all') {
+            const grid = document.getElementById('car-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? carsData 
+                : carsData.filter(car => car.brand === filter);
+
+            filtered.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'bg-[#131c2e] rounded-2xl border border-slate-800 overflow-hidden car-card-glow transition duration-300 flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden bg-slate-900">
+                        <img src="${car.image}" alt="${car.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+                        <div class="absolute top-4 left-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full ${car.brand === 'bmw' ? 'bg-blue-600' : 'bg-slate-700 text-amber-300'} text-white shadow-md">
+                                ${car.brandName}
+                            </span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-slate-300 border border-slate-700">
+                                ${car.category}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">${car.name}</h3>
+                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">${car.desc}</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-3 border-y border-slate-800 text-center text-xs">
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px]">Tenaga</span>
+                                <span class="font-semibold text-slate-200">${car.hp}</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px]">0-100 km/h</span>
+                                <span class="font-semibold text-slate-200">${car.accel}</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500 uppercase text-[10px]">Mesin</span>
+                                <span class="font-semibold text-slate-200 truncate block px-1">${car.engine.split(' ')[0]}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-1">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Mulai Dari</span>
+                                <span class="text-base font-bold text-amber-400">${car.priceFormatted}</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="openModal('${car.id}')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 p-2.5 rounded-xl text-xs font-medium transition" title="Detail Spesifikasi" aria-label="Detail ${car.name}">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                <button onclick="selectCarForTestDrive('${car.id}')" class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2.5 rounded-xl text-xs font-medium transition shadow-md shadow-blue-600/30">
+                                    Test Drive
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter buttons handler
+        function filterCars(brand) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-6 py-2.5 rounded-xl font-medium text-sm transition bg-slate-800 text-slate-300 hover:bg-slate-700';
+            });
+            const activeBtn = document.getElementById(`btn-${brand}`);
+            if (activeBtn) {
+                activeBtn.className = 'filter-btn px-6 py-2.5 rounded-xl font-medium text-sm transition bg-blue-600 text-white shadow-lg shadow-blue-600/30';
+            }
+            renderCatalog(brand);
+        }
+
+        // Initialize selects and calculators
+        function initSelects() {
+            const custCarSelect = document.getElementById('cust-car');
+            const simCarSelect = document.getElementById('sim-car');
+            const comp1 = document.getElementById('compare-1');
+            const comp2 = document.getElementById('compare-2');
+
+            if (custCarSelect) custCarSelect.innerHTML = '';
+            if (simCarSelect) simCarSelect.innerHTML = '';
+            if (comp1) comp1.innerHTML = '';
+            if (comp2) comp2.innerHTML = '';
+
+            carsData.forEach((car, index) => {
+                const opt1 = document.createElement('option');
+                opt1.value = car.id;
+                opt1.textContent = `${car.brandName} - ${car.name}`;
+                if (custCarSelect) custCarSelect.appendChild(opt1.cloneNode(true));
+                if (simCarSelect) simCarSelect.appendChild(opt1.cloneNode(true));
+
+                const optComp1 = document.createElement('option');
+                optComp1.value = car.id;
+                optComp1.textContent = car.name;
+                if (comp1) comp1.appendChild(optComp1);
+
+                const optComp2 = document.createElement('option');
+                optComp2.value = car.id;
+                optComp2.textContent = car.name;
+                if(index === 6) optComp2.selected = true;
+                if (comp2) comp2.appendChild(optComp2);
+            });
+
+            calculateCredit();
+            updateComparison();
+        }
+
+        // Credit Simulator Logic
+        function calculateCredit() {
+            const carIdSelect = document.getElementById('sim-car');
+            const tenorSelect = document.getElementById('sim-tenor');
+            const dpSlider = document.getElementById('sim-dp');
+
+            if (!carIdSelect || !tenorSelect || !dpSlider) return;
+
+            const car = carsData.find(c => c.id === carIdSelect.value) || carsData[0];
+            const tenorMonths = parseInt(tenorSelect.value);
+            const dpPercent = parseInt(dpSlider.value);
+
+            document.getElementById('dp-label').textContent = `${dpPercent}%`;
+            document.getElementById('sim-price-display').textContent = car.priceFormatted;
+
+            const dpAmount = (car.price * dpPercent) / 100;
+            const principal = car.price - dpAmount;
+            
+            // Assume flat interest rate ~ 4.5% per annum
+            const totalInterest = (principal * 0.045 * (tenorMonths / 12));
+            const totalLoan = principal + totalInterest;
+            const monthlyInstallment = totalLoan / tenorMonths;
+
+            document.getElementById('sim-dp-display').textContent = formatRupiah(dpAmount);
+            document.getElementById('sim-monthly-installment').textContent = formatRupiah(monthlyInstallment);
+        }
+
+        function formatRupiah(amount) {
+            return 'Rp ' + Math.round(amount).toLocaleString('id-ID') + ',-';
+        }
+
+        function bookFromSimulator() {
+            const carId = document.getElementById('sim-car').value;
+            document.getElementById('cust-car').value = carId;
+            const contactSection = document.getElementById('contact');
+            if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update Comparison Table
+        function updateComparison() {
+            const comp1Elem = document.getElementById('compare-1');
+            const comp2Elem = document.getElementById('compare-2');
+            if (!comp1Elem || !comp2Elem) return;
+
+            const id1 = comp1Elem.value;
+            const id2 = comp2Elem.value;
+
+            const car1 = carsData.find(c => c.id === id1) || carsData[0];
+            const car2 = carsData.find(c => c.id === id2) || carsData[1];
+
+            document.getElementById('comp-name-1').textContent = car1.name;
+            document.getElementById('comp-name-2').textContent = car2.name;
+
+            const body = document.getElementById('comp-body');
+            body.innerHTML = `
+                <div class="grid grid-cols-3 p-4 items-center">
+                    <div class="text-slate-400 font-medium">Harga OTR</div>
+                    <div class="text-center font-bold text-amber-400">${car1.priceFormatted}</div>
+                    <div class="text-center font-bold text-amber-400">${car2.priceFormatted}</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 items-center bg-slate-900/40">
+                    <div class="text-slate-400 font-medium">Merek</div>
+                    <div class="text-center text-slate-200">${car1.brandName}</div>
+                    <div class="text-center text-slate-200">${car2.brandName}</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 items-center">
+                    <div class="text-slate-400 font-medium">Kategori</div>
+                    <div class="text-center text-slate-200">${car1.category}</div>
+                    <div class="text-center text-slate-200">${car2.category}</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 items-center bg-slate-900/40">
+                    <div class="text-slate-400 font-medium">Tenaga Maksimum</div>
+                    <div class="text-center font-bold text-blue-400">${car1.hp}</div>
+                    <div class="text-center font-bold text-amber-400">${car2.hp}</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 items-center">
+                    <div class="text-slate-400 font-medium">Akselerasi 0-100 km/h</div>
+                    <div class="text-center font-bold text-slate-200">${car1.accel}</div>
+                    <div class="text-center font-bold text-slate-200">${car2.accel}</div>
+                </div>
+                <div class="grid grid-cols-3 p-4 items-center bg-slate-900/40">
+                    <div class="text-slate-400 font-medium">Tipe Mesin</div>
+                    <div class="text-center text-xs text-slate-300">${car1.engine}</div>
+                    <div class="text-center text-xs text-slate-300">${car2.engine}</div>
+                </div>
+            `;
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            const car = carsData.find(c => c.id === id);
+            if(!car) return;
+
+            document.getElementById('modal-img').src = car.image;
+            document.getElementById('modal-brand').textContent = car.brandName;
+            document.getElementById('modal-title').textContent = car.name;
+            document.getElementById('modal-price').textContent = car.priceFormatted;
+            document.getElementById('modal-hp').textContent = car.hp;
+            document.getElementById('modal-accel').textContent = car.accel;
+            document.getElementById('modal-engine').textContent = car.engine;
+            document.getElementById('modal-category').textContent = car.category;
+            document.getElementById('modal-desc').textContent = car.desc;
+
+            window.currentModalCarId = car.id;
+
+            const modal = document.getElementById('car-modal');
+            const content = document.getElementById('modal-content');
+            if (modal && content) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                }, 10);
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('car-modal');
+            const content = document.getElementById('modal-content');
+            if (modal && content) {
+                modal.classList.add('opacity-0');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function bookCarFromModal() {
+            const carId = window.currentModalCarId;
+            closeModal();
+            const custCar = document.getElementById('cust-car');
+            if (custCar) custCar.value = carId;
+            const contactSection = document.getElementById('contact');
+            if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectCarForTestDrive(id) {
+            const custCar = document.getElementById('cust-car');
+            if (custCar) custCar.value = id;
+            const contactSection = document.getElementById('contact');
+            if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Form Submit Handler & Toast Notification
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('cust-name');
+            const carSelect = document.getElementById('cust-car');
+            const dateInput = document.getElementById('cust-date');
+
+            if (!nameInput || !carSelect || !dateInput) return;
+
+            const name = nameInput.value;
+            const carName = carSelect.options[carSelect.selectedIndex].text;
+            const date = dateInput.value;
+
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            if (toast && toastMsg) {
+                toastMsg.textContent = `Terima kasih ${name}! Permintaan test drive ${carName} untuk tanggal ${date} berhasil dikirim. Concierge kami akan segera menghubungi Anda.`;
+                toast.classList.remove('translate-y-32', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-32', 'opacity-0');
+                }, 6000);
+            }
+
+            const form = document.getElementById('testdrive-form');
+            if (form) form.reset();
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderCatalog('all');
+            initSelects();
+        };
+    </script>
+</body>
+</html>
