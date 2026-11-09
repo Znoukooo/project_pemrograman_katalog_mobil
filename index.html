@@ -133,7 +133,7 @@
             <!-- Quick stats bar -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-slate-800/80 max-w-4xl mx-auto">
                 <div class="text-center">
-                    <p class="text-2xl sm:text-3xl font-bold text-white">12+</p>
+                    <p class="text-2xl sm:text-3xl font-bold text-white">16+</p>
                     <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Model Unggulan</p>
                 </div>
                 <div class="text-center">
@@ -222,12 +222,12 @@
                         </div>
                     </div>
 
-                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 flex items-center justify-between">
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div>
                             <span class="text-xs text-slate-400 uppercase">Harga OTR Mobil</span>
                             <p id="sim-price-display" class="text-lg font-bold text-white">Rp 0,-</p>
                         </div>
-                        <div class="text-right">
+                        <div class="text-left sm:text-right">
                             <span class="text-xs text-slate-400 uppercase">Estimasi DP Awal</span>
                             <p id="sim-dp-display" class="text-lg font-bold text-amber-400">Rp 0,-</p>
                         </div>
@@ -284,8 +284,8 @@
         <div class="max-w-4xl mx-auto bg-[#131c2e] rounded-2xl border border-slate-800 overflow-hidden shadow-2xl">
             <div class="grid grid-cols-3 bg-slate-900/80 p-4 border-b border-slate-800 font-semibold text-center text-sm">
                 <div class="text-left text-slate-400">Spesifikasi</div>
-                <div id="comp-name-1" class="text-blue-400">Model 1</div>
-                <div id="comp-name-2" class="text-amber-400">Model 2</div>
+                <div id="comp-name-1" class="text-blue-400 truncate px-1">Model 1</div>
+                <div id="comp-name-2" class="text-amber-400 truncate px-1">Model 2</div>
             </div>
             <div class="divide-y divide-slate-800/60 text-sm" id="comp-body">
                 <!-- Comparison rows populated by JS -->
@@ -306,26 +306,26 @@
                     </p>
 
                     <div class="space-y-4 pt-2">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
                                 <i class="fa-solid fa-location-dot text-lg"></i>
                             </div>
                             <div>
                                 <h4 class="text-sm font-semibold text-white">Showroom Utama</h4>
-                                <p class="text-xs text-slate-400">Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan</p>
+                                <p class="text-xs text-slate-400">Jl. H. R. Rasuna Said, RT.2/RW.5, Kuningan, Karet Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12940</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
                                 <i class="fa-solid fa-phone text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="text-sm font-semibold text-white">VIP Concierge Hotline</h4>
-                                <p class="text-xs text-slate-400">+62 21 555-LUXE (5893)</p>
+                                <h4 class="text-sm font-semibold text-white">Khaisan Ramzi</h4>
+                                <p class="text-xs text-slate-400">+62 821-2343-8174</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                            <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
                                 <i class="fa-solid fa-envelope text-lg"></i>
                             </div>
                             <div>
@@ -384,19 +384,19 @@
                 <button onclick="closeModal()" class="absolute top-4 right-4 bg-slate-900/80 text-white w-10 h-10 rounded-full flex items-center justify-center border border-slate-700 hover:bg-slate-800 transition" aria-label="Close modal">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
-                <div class="absolute bottom-4 left-6">
+                <div class="absolute bottom-4 left-6 right-6">
                     <span id="modal-brand" class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-600 text-white">Brand</span>
                     <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Car Name</h3>
                 </div>
             </div>
 
             <div class="p-6 sm:p-8 space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
                     <div>
                         <span class="text-xs text-slate-400 uppercase tracking-wider block">Harga Mulai Dari (OTR)</span>
                         <span id="modal-price" class="text-2xl font-bold text-amber-400">Rp 0,-</span>
                     </div>
-                    <button onclick="bookCarFromModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition">
+                    <button onclick="bookCarFromModal()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition text-center">
                         <i class="fa-solid fa-calendar-check mr-2"></i> Jadwalkan Test Drive Model Ini
                     </button>
                 </div>
@@ -454,7 +454,7 @@
                 <ul class="space-y-2 text-xs">
                     <li><a href="#catalog" class="hover:text-white transition">BMW 3 Series</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">BMW 5 Series</a></li>
-                    <li><a href="#catalog" class="hover:text-white transition">BMW 7 Series</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">BMW M2 & M8</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">BMW X3 & X5</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">BMW M4 Competition</a></li>
                 </ul>
@@ -465,7 +465,7 @@
                     <li><a href="#catalog" class="hover:text-white transition">C-Class Sedan</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">E-Class Executive</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">S-Class Flagship</a></li>
-                    <li><a href="#catalog" class="hover:text-white transition">GLC & GLE SUV</a></li>
+                    <li><a href="#catalog" class="hover:text-white transition">G-Class & GLC SUV</a></li>
                     <li><a href="#catalog" class="hover:text-white transition">Mercedes-AMG GT</a></li>
                 </ul>
             </div>
@@ -474,7 +474,7 @@
                 <p class="text-xs text-slate-400 mb-2">Senin - Jumat: 09:00 - 19:00 WIB</p>
                 <p class="text-xs text-slate-400 mb-4">Sabtu - Minggu: 10:00 - 17:00 WIB</p>
                 <div class="flex space-x-3 text-slate-300">
-                    <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/khaisnn._?igsh=MTc2MHhnMnBtcmVt" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-400 transition" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
@@ -487,177 +487,219 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Car Dataset (BMW & Mercedes-Benz with robust Unsplash fallback imagery)
+        // Car Dataset (BMW & Mercedes-Benz including G-Class, M2, and M8)
         const carsData = [
-            {
-                id: "bmw-3",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW 330i M Sport",
-                category: "Sedan / Sport",
-                price: 1085000000,
-                priceFormatted: "Rp 1,085 Miliar",
-                hp: "258 HP",
-                accel: "5.8 dtk",
-                engine: "2.0L TwinPower Turbo",
-                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
-                desc: "Sedan sport legendaris dengan handling presisi tinggi, paket eksterior M Sport aerodinamis, dan kabin digital berteknologi BMW Curved Display."
-            },
-            {
-                id: "bmw-5",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW 520i M Sport",
-                category: "Executive Sedan",
-                price: 1250000000,
-                priceFormatted: "Rp 1,250 Miliar",
-                hp: "184 HP",
-                accel: "7.9 dtk",
-                engine: "2.0L Turbo Mild-Hybrid",
-                image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
-                desc: "Kombinasi sempurna antara kenyamanan eksekutif kelas atas dan efisiensi berkendara modern dengan sistem mild-hybrid pintar."
-            },
-            {
-                id: "bmw-7",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW 740li Executive",
-                category: "Flagship Luxury",
-                price: 2450000000,
-                priceFormatted: "Rp 2,450 Miliar",
-                hp: "381 HP",
-                accel: "5.4 dtk",
-                engine: "3.0L Inline-6 Turbo",
-                image: "https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=800&q=80",
-                desc: "Puncak kemewahan sedan flagship BMW, dilengkapi teater layar belakang 31-inch BMW Theatre Screen dan interior Lounge Seat tak tertandingi."
-            },
-            {
-                id: "bmw-x3",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW X3 sDrive20i",
-                category: "Luxury SAV",
-                price: 1120000000,
-                priceFormatted: "Rp 1,120 Miliar",
-                hp: "184 HP",
-                accel: "8.2 dtk",
-                engine: "2.0L BMW TwinPower Turbo",
-                image: "https://images.unsplash.com/photo-1541348263662-e0626628d00f?auto=format&fit=crop&w=800&q=80",
-                desc: "Sport Activity Vehicle tangguh untuk petualangan harian maupun jarak jauh dengan kenyamanan suspensi adaptif."
-            },
-            {
-                id: "bmw-x5",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW X5 xDrive40i",
-                category: "Premium SAV",
-                price: 1780000000,
-                priceFormatted: "Rp 1,780 Miliar",
-                hp: "340 HP",
-                accel: "5.5 dtk",
-                engine: "3.0L 6-Cylinder Turbo",
-                image: "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&w=800&q=80",
-                desc: "SUV premium berukuran mid-size dengan kapasitas 7 penumpang, panoramic glass roof Sky Lounge, dan traksi xDrive cerdas."
-            },
-            {
-                id: "bmw-m4",
-                brand: "bmw",
-                brandName: "BMW",
-                name: "BMW M4 Competition",
-                category: "High-Performance",
-                price: 2850000000,
-                priceFormatted: "Rp 2,850 Miliar",
-                hp: "510 HP",
-                accel: "3.9 dtk",
-                engine: "3.0L M TwinPower Turbo S58",
-                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
-                desc: "Mobil sport coupe bertenaga buas dengan DNA balap sejati, velg forged M, dan sistem pengereman performa tinggi."
-            },
-            {
-                id: "merc-c",
-                brand: "mercedes",
-                brandName: "Mercedes-Benz",
-                name: "Mercedes-Benz C 200 Avantgarde",
-                category: "Luxury Sedan",
-                price: 1025000000,
-                priceFormatted: "Rp 1,025 Miliar",
-                hp: "204 HP",
-                accel: "7.3 dtk",
-                engine: "1.5L Turbo + EQ Boost",
-                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80",
-                desc: "Baby S-Class dengan desain elegan, interior berlayar sentuh vertikal MBUX mutakhir, dan kenyamanan pengendaraan khas Mercedes."
-            },
-            {
-                id: "merc-e",
-                brand: "mercedes",
-                brandName: "Mercedes-Benz",
-                name: "Mercedes-Benz E 300 AMG Line",
-                category: "Executive Sedan",
-                price: 1420000000,
-                priceFormatted: "Rp 1,420 Miliar",
-                hp: "258 HP",
-                accel: "6.2 dtk",
-                engine: "2.0L 4-Cylinder Turbo",
-                image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
-                desc: "Standar emas sedan eksekutif dunia dengan pencahayaan ambient 64 warna, jok kulit nappa mewah, dan fitur keselamatan PRE-SAFE."
-            },
-            {
-                id: "merc-s",
-                brand: "mercedes",
-                brandName: "Mercedes-Benz",
-                name: "Mercedes-Benz S 450 4MATIC",
-                category: "Flagship Luxury",
-                price: 2980000000,
-                priceFormatted: "Rp 2,980 Miliar",
-                hp: "367 HP",
-                accel: "5.1 dtk",
-                engine: "3.0L Inline-6 + EQ Boost",
-                image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80",
-                desc: "Simbol status tertinggi di dunia otomotif dengan suspensi udara AIRMATIC, Burmester 4D surround sound, dan kursi pijat executive."
-            },
-            {
-                id: "merc-glc",
-                brand: "mercedes",
-                brandName: "Mercedes-Benz",
-                name: "Mercedes-Benz GLC 300 AMG Line",
-                category: "Luxury SUV",
-                price: 1210000000,
-                priceFormatted: "Rp 1,210 Miliar",
-                hp: "258 HP",
-                accel: "6.2 dtk",
-                engine: "2.0L Turbo 4MATIC",
-                image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80",
-                desc: "SUV mewah terlaris dengan kabin lapang, fungsi off-road screen, dan tampilan sporty garis desain AMG."
-            },
-            {
-                id: "merc-gle",
-                brand: "mercedes",
-                brandName: "Mercedes-Benz",
-                name: "Mercedes-Benz GLE 450 AMG Line",
-                category: "Premium SUV",
-                price: 1890000000,
-                priceFormatted: "Rp 1,890 Miliar",
-                hp: "367 HP",
-                accel: "5.7 dtk",
-                engine: "3.0L Inline-6 Turbo",
-                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-                desc: "SUV premium bertenaga dengan 3 baris kursi fleksibel, E-ACTIVE BODY CONTROL, dan kemewahan interior tanpa tanding."
-            },
-            {
-                id: "merc-amg",
-                brand: "mercedes",
-                brandName: "Mercedes-AMG",
-                name: "Mercedes-AMG GT 4-Door Coupe",
-                category: "High-Performance",
-                price: 3650000000,
-                priceFormatted: "Rp 3,650 Miliar",
-                hp: "435 HP",
-                accel: "4.5 dtk",
-                engine: "3.0L AMG Turbo + Electric",
-                image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
-                desc: "Coupe 4 pintu buatan Affalterbach yang memadukan kepraktisan harian dengan performa supercar di lintasan balap."
-            }
-        ];
+                {
+                    id: "bmw-3",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW 330i M Sport",
+                    category: "Sedan / Sport",
+                    price: 1085000000,
+                    priceFormatted: "Rp 1,085 Miliar",
+                    hp: "258 HP",
+                    accel: "5.8 dtk",
+                    engine: "2.0L TwinPower Turbo",
+                    image: "https://imgcdn.oto.com/large/gallery/exterior/3/2195/bmw-3-series-sedan-97535.jpg",
+                    desc: "Sedan sport legendaris dengan handling presisi tinggi, paket eksterior M Sport aerodinamis, dan kabin digital berteknologi BMW Curved Display."
+                },
+                {
+                    id: "bmw-5",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW 520i M Sport",
+                    category: "Executive Sedan",
+                    price: 1250000000,
+                    priceFormatted: "Rp 1,250 Miliar",
+                    hp: "184 HP",
+                    accel: "7.9 dtk",
+                    engine: "2.0L Turbo Mild-Hybrid",
+                    image: "https://imgcdn.oto.com/large/gallery/exterior/3/3051/bmw-5-series-sedan-2024-86046.jpg",
+                    desc: "Kombinasi sempurna antara kenyamanan eksekutif kelas atas dan efisiensi berkendara modern dengan sistem mild-hybrid pintar."
+                },
+                {
+                    id: "bmw-m2",
+                    brand: "bmw",
+                    brandName: "BMW M",
+                    name: "BMW M2 Coupe",
+                    category: "High-Performance Coupe",
+                    price: 1950000000,
+                    priceFormatted: "Rp 1,95 Miliar",
+                    hp: "460 HP",
+                    accel: "4.1 dtk",
+                    engine: "3.0L M TwinPower Turbo 6-Cylinder",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmkmoOLM9dgYZhKq9gBj3amJClrydSRrb0pL9sqbls3A&s=10",
+                    desc: "Compact sports car murni dengan penggerak roda belakang (RWD), transmisi manual/otomatis yang agresif, dan performa mesin 6-silinder yang bertenaga."
+                },
+                {
+                    id: "bmw-m8",
+                    brand: "bmw",
+                    brandName: "BMW M",
+                    name: "BMW M8 Competition Coupe",
+                    category: "Luxury High-Performance",
+                    price: 7200000000,
+                    priceFormatted: "Rp 7,20 Miliar",
+                    hp: "625 HP",
+                    accel: "3.2 dtk",
+                    engine: "4.4L V8 M TwinPower Turbo",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJgSgCSN4T0bTDKu1fDc6EE1dDF39PI0o76qlQdDwjDD4fKeiW9Xd_KlU&s=10",
+                    desc: "Grand tourer termewah dan tercepat dari keluarga BMW M, memadukan kemewahan kelas atas dengan performa supercar penakluk lintasan."
+                },
+                {
+                    id: "bmw-7",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW 740li Executive",
+                    category: "Flagship Luxury",
+                    price: 2450000000,
+                    priceFormatted: "Rp 2,450 Miliar",
+                    hp: "381 HP",
+                    accel: "5.4 dtk",
+                    engine: "3.0L Inline-6 Turbo",
+                    image: "https://asset.kompas.com/crops/rp90Tn8U3Nw0enROU5wlPGFXOdw=/0x0:1000x667/1200x800/data/photo/2017/04/28/1611867890.jpg",
+                    desc: "Puncak kemewahan sedan flagship BMW, dilengkapi teater layar belakang 31-inch BMW Theatre Screen dan interior Lounge Seat tak tertandingi."
+                },
+                {
+                    id: "bmw-x3",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW X3 sDrive20i",
+                    category: "Luxury SAV",
+                    price: 1120000000,
+                    priceFormatted: "Rp 1,120 Miliar",
+                    hp: "184 HP",
+                    accel: "8.2 dtk",
+                    engine: "2.0L BMW TwinPower Turbo",
+                    image: "https://mediapool.bmwgroup.com/cache/P9/201903/P90341352/P90341352-bmw-x3-sdrive20i-2004px.jpg",
+                    desc: "Sport Activity Vehicle tangguh untuk petualangan harian maupun jarak jauh dengan kenyamanan suspensi adaptif."
+                },
+                {
+                    id: "bmw-x5",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW X5 xDrive40i",
+                    category: "Premium SAV",
+                    price: 1780000000,
+                    priceFormatted: "Rp 1,780 Miliar",
+                    hp: "340 HP",
+                    accel: "5.5 dtk",
+                    engine: "3.0L 6-Cylinder Turbo",
+                    image: "https://hips.hearstapps.com/mtg-prod/68796725fa06e90002dfc7bf/lead-001-2025-bmw-x5-xdrive40i-silver-anniversary-edition.jpg?w=768&width=768&q=75&format=webp",
+                    desc: "SUV premium berukuran mid-size dengan kapasitas 7 penumpang, panoramic glass roof Sky Lounge, dan traksi xDrive cerdas."
+                },
+                {
+                    id: "bmw-m4",
+                    brand: "bmw",
+                    brandName: "BMW",
+                    name: "BMW M4 Competition",
+                    category: "High-Performance",
+                    price: 2850000000,
+                    priceFormatted: "Rp 2,850 Miliar",
+                    hp: "510 HP",
+                    accel: "3.9 dtk",
+                    engine: "3.0L M TwinPower Turbo S58",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFb7t86e_tqcl_xoxmSDJTDZ5yo2OnFqzfdlChGmIAD7guDt4gdHXe6uM&s=10",
+                    desc: "Mobil sport coupe bertenaga buas dengan DNA balap sejati, velg forged M, dan sistem pengereman performa tinggi."
+                },
+                {
+                    id: "merc-c",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-Benz C 200 Avantgarde",
+                    category: "Luxury Sedan",
+                    price: 1025000000,
+                    priceFormatted: "Rp 1,025 Miliar",
+                    hp: "204 HP",
+                    accel: "7.3 dtk",
+                    engine: "1.5L Turbo + EQ Boost",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn3TQ5FusbW4t53CUgV1sQz3t4scDihpnkITDAB6hdTA&s=10",
+                    desc: "Baby S-Class dengan desain elegan, interior berlayar sentuh vertikal MBUX mutakhir, dan kenyamanan pengendaraan khas Mercedes."
+                },
+                {
+                    id: "merc-e",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-Benz E 300 AMG Line",
+                    category: "Executive Sedan",
+                    price: 1420000000,
+                    priceFormatted: "Rp 1,420 Miliar",
+                    hp: "258 HP",
+                    accel: "6.2 dtk",
+                    engine: "2.0L 4-Cylinder Turbo",
+                    image: "https://mercedes-ina.com/wp-content/uploads/2024/07/e300.jpg",
+                    desc: "Standar emas sedan eksekutif dunia dengan pencahayaan ambient 64 warna, jok kulit nappa mewah, dan fitur keselamatan PRE-SAFE."
+                },
+                {
+                    id: "merc-s",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-Benz S 450 4MATIC",
+                    category: "Flagship Luxury",
+                    price: 2980000000,
+                    priceFormatted: "Rp 2,980 Miliar",
+                    hp: "367 HP",
+                    accel: "5.1 dtk",
+                    engine: "3.0L Inline-6 + EQ Boost",
+                    image: "https://mercedes-ina.com/wp-content/uploads/2021/05/s-class-dpn.jpg",
+                    desc: "Simbol status tertinggi di dunia otomotif dengan suspensi udara AIRMATIC, Burmester 4D surround sound, dan kursi pijat executive."
+                },
+                {
+                    id: "merc-glc",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-Benz GLC 300 AMG Line",
+                    category: "Luxury SUV",
+                    price: 1210000000,
+                    priceFormatted: "Rp 1,210 Miliar",
+                    hp: "258 HP",
+                    accel: "6.2 dtk",
+                    engine: "2.0L Turbo 4MATIC",
+                    image: "https://mercedes-ina.com/wp-content/uploads/2022/11/glc300.jpg",
+                    desc: "SUV mewah terlaris dengan kabin lapang, fungsi off-road screen, dan tampilan sporty garis desain AMG."
+                },
+                {
+                    id: "merc-gle",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-Benz GLE 450 AMG Line",
+                    category: "Premium SUV",
+                    price: 1890000000,
+                    priceFormatted: "Rp 1,890 Miliar",
+                    hp: "367 HP",
+                    accel: "5.7 dtk",
+                    engine: "3.0L Inline-6 Turbo",
+                    image: "https://mercedes-ina.com/wp-content/uploads/2019/03/18c0625_051.jpg",
+                    desc: "SUV premium bertenaga dengan 3 baris kursi fleksibel, E-ACTIVE BODY CONTROL, dan kemewahan interior tanpa tanding."
+                },
+                {
+                    id: "merc-amg",
+                    brand: "mercedes",
+                    brandName: "Mercedes-AMG",
+                    name: "Mercedes-AMG GT 4-Door Coupe",
+                    category: "High-Performance",
+                    price: 3650000000,
+                    priceFormatted: "Rp 3,650 Miliar",
+                    hp: "435 HP",
+                    accel: "4.5 dtk",
+                    engine: "3.0L AMG Turbo + Electric",
+                    image: "https://portal.goodcar.id/storage/articles/1779348306_6a0eb352d4f19.jpg",
+                    desc: "Coupe 4 pintu buatan Affalterbach yang memadukan kepraktisan harian dengan performa supercar di lintasan balap."
+                },
+                {
+                    id: "merc-g-class",
+                    brand: "mercedes",
+                    brandName: "Mercedes-Benz",
+                    name: "Mercedes-AMG G 63",
+                    category: "SUV / Off-Road",
+                    price: 7500000000,
+                    priceFormatted: "Rp 7,50 Miliar",
+                    hp: "585 HP",
+                    accel: "4.5 dtk",
+                    engine: "4.0L V8 Biturbo",
+                    image: "https://mercedes-ina.com/wp-content/uploads/2019/03/2018-Mercedes-AMG-G63-white-front-header-600x400.jpg",
+                    desc: "Iconic off-roader mewah dengan performa buas mesin V8 Biturbo buatan Affalterbach dan ketangguhan di segala medan."
+                }
+            ];
 
         // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
